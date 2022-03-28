@@ -1,6 +1,6 @@
-import React from 'react';
+import React, { useEffect } from 'react';
 import styled from 'styled-components';
-import { useRecoilValue } from 'recoil';
+import { useRecoilState, useRecoilValue } from 'recoil';
 import { habitsSate, modalState } from '../../store/trackers';
 import Header from './header/header';
 import Modal from './modal/modal';
@@ -12,7 +12,13 @@ const Container = styled.div`
 
 function HabitContainer() {
     const isModal = useRecoilValue(modalState)
-    const habitList = useRecoilValue(habitsSate)
+    const [habitList, setHabitList] = useRecoilState(habitsSate)
+    useEffect(() => {
+        const savedData = window.localStorage.getItem('habitList');
+        if(savedData !== null){
+            return setHabitList(JSON.parse(savedData))
+        }
+    }, [setHabitList])
     return (
         <>
             <Header />

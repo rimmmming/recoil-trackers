@@ -39,8 +39,9 @@ function Daily({day, habitIndex, dailyIndex, isComplete}) {
         const data = _.cloneDeep(habitList);
         data[habitIndex].days[dailyIndex].isComplete = !data[habitIndex].days[dailyIndex].isComplete;
         data[habitIndex].days[dailyIndex].isComplete ? data[habitIndex].count += 1 : data[habitIndex].count -= 1
-        const newHabits = [...data]
-        setHabitList(newHabits)
+        const newHabit = [...data]
+        setHabitList(newHabit)
+        localStorage.setItem('habitList', JSON.stringify(newHabit))
     }
     return (
         <Button type='button' className={isComplete && 'active'}  onClick={handleClick}>{day}</Button>

@@ -28,10 +28,11 @@ function HabitHeader({title, habitIndex}) {
     const handleClick = () => {
         const deleteNumber = habitIndex;
         const data = _.cloneDeep(habitList);
-        const newHabits = data.filter((_, idx) => {
+        const newHabit = data.filter((_, idx) => {
             return idx !== deleteNumber
         })
-        setHabitList(newHabits)
+        setHabitList(newHabit)
+        localStorage.setItem('habitList', JSON.stringify(newHabit))
     }
     return (
         <Container>

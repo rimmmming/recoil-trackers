@@ -54,6 +54,7 @@ function Modal() {
         const newHabit = [...habitList, {title, count:0, ...data }]
         setHabitList(newHabit);
         setIsModal(false);
+        localStorage.setItem('habitList', JSON.stringify(newHabit))
     }
     useEffect(()=>{
         inputRef.current.focus()
